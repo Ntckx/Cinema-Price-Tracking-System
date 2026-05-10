@@ -7,10 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,18 +19,15 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Bookings {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
-    @NotEmpty(message = "Name cannot be empty")
     private String name;
 
-    @NotBlank(message = "Seat number")
     private String seatNumber;
 
-    @NotEmpty(message = "Movie Title cannot be empty" )
     private String movieTitle;
 
     @OneToMany(
@@ -43,21 +37,16 @@ public class Bookings {
     )
     private List<BookingPromotional> promotions;
 
-    @Positive(message = "Price must be more than 0")
     private double originPrice;
 
-    @Positive(message = "Final price must be more than 0")
     private double finalPrice;
 
-    @NotNull(message = "Status Must not be empty")
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @NotNull(message = "User must have tier")
     @Enumerated(EnumType.STRING)
     private MemberTier memberTier;
 
-    @Positive(message = "Points used must be more than 0")
     private int pointsUsed;
 
     private LocalDateTime createdAt;

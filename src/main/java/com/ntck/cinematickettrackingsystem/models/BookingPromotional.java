@@ -31,14 +31,11 @@ public class BookingPromotional {
     )
     private Bookings bookings;
 
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private Promotion promotion;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private PromotionCategory promotionCategory;
 
-    @Positive
     private double discountedAmount;
 }
