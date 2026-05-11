@@ -1,8 +1,11 @@
 package com.ntck.cinematickettrackingsystem.Bookings.dto.request;
 
 import com.ntck.cinematickettrackingsystem.models.MemberTier.MemberTier;
+import com.ntck.cinematickettrackingsystem.models.MovieRound;
 import jakarta.validation.constraints.*;
 import lombok.*;
+
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,8 +19,8 @@ public class BookingRequest {
     @NotBlank(message = "Seat number cannot be empty")
     private String seatNumber;
 
-    @NotBlank(message = "Movie title cannot be empty")
-    private String movieTitle;
+    @NotNull(message = "Movie Round must not be null")
+    private UUID movieRoundId;
 
     @Positive(message = "Price must be greater than 0")
     private double originPrice;

@@ -28,7 +28,12 @@ public class Bookings {
 
     private String seatNumber;
 
-    private String movieTitle;
+    @ManyToOne
+    @JoinColumn(
+            name = "movie_round_id",
+            nullable = false
+    )
+    private MovieRound movieRound;
 
     @OneToMany(
             mappedBy = "bookings",
@@ -52,11 +57,6 @@ public class Bookings {
     private LocalDateTime createdAt;
 
     private LocalDateTime paidAt;
-
-
-
-
-
 
 
 }

@@ -18,4 +18,13 @@ public class GlobalException {
 
         return problemDetail;
     }
+
+    @ExceptionHandler(MovieRoundNotFoundException.class)
+    public ProblemDetail handleMovieRoundNotFound(MovieRoundNotFoundException e){
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
+        problemDetail.setTitle("Movie Round is not found");
+        problemDetail.setProperty("timestamp: ", LocalDateTime.now());
+
+        return problemDetail;
+    }
 }

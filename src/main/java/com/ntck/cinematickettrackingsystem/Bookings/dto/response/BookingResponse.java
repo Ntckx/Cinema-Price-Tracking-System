@@ -5,6 +5,7 @@ import com.ntck.cinematickettrackingsystem.models.Status.Status;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class BookingResponse {
     private UUID id;
     private String name;
     private String movieTitle;
+    private LocalTime movieRoundStartTime;
     private String seatNumber;
     private double originPrice;
     private double finalPrice;
