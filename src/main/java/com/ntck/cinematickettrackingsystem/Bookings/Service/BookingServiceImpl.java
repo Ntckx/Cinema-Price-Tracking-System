@@ -10,14 +10,15 @@ import com.ntck.cinematickettrackingsystem.GlobalException.SeatAlreadyTakenExcep
 import com.ntck.cinematickettrackingsystem.models.Bookings;
 import com.ntck.cinematickettrackingsystem.models.MemberTier.MemberTier;
 import com.ntck.cinematickettrackingsystem.models.MovieRound;
-import com.ntck.cinematickettrackingsystem.models.State.BookingEvent.BookingEvent;
-import com.ntck.cinematickettrackingsystem.models.State.BookingState;
-import com.ntck.cinematickettrackingsystem.models.State.Factory.BookingStateFactory;
+import com.ntck.cinematickettrackingsystem.State.BookingEvent.BookingEvent;
+import com.ntck.cinematickettrackingsystem.State.BookingState;
+import com.ntck.cinematickettrackingsystem.State.Factory.BookingStateFactory;
 import com.ntck.cinematickettrackingsystem.models.Status.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -38,8 +39,8 @@ public class BookingServiceImpl implements BookingsService {
 
 
         //Check if seat is already taken
-        boolean seatTaken = bookingsRepository.existsBySeatNumberAndMovieRoundId(bookingRequest.getSeatNumber(),
-                bookingRequest.getMovieRoundId());
+        boolean seatTaken = bookingsRepository.existsBySeatNumberAndMovieRoundIdAndStatusNotIn(bookingRequest.getSeatNumber(),
+                bookingRequest.getMovieRoundId(), List.of(Status.CANCELLED, Status.REFUNDED));
 
         if (seatTaken) {
             throw new SeatAlreadyTakenException("Seat is already taken");
@@ -55,26 +56,40 @@ public class BookingServiceImpl implements BookingsService {
                 .pointsUsed(0)
                 .createdAt(LocalDateTime.now()).build();
 
-
-        Bookings saved = bookingsRepository.save(booking);
-        return BookingResponse.builder().id(saved.getId())
-                .name(saved.getName())
-                .movieTitle(saved.getMovieRound().getMovieTitle())
-                .movieRoundStartTime(saved.getMovieRound().getStartTime())
-                .seatNumber(saved.getSeatNumber())
-                .originPrice(saved.getOriginPrice())
-                .finalPrice(saved.getFinalPrice())
-                .status(saved.getStatus())
-                .memberTier(saved.getMemberTier())
-                .pointsUsed(saved.getPointsUsed())
-                .createdAt(saved.getCreatedAt()).build();
-
+        return bookingMapper.toResponse(bookingsRepository.save(booking));
     }
 
     @Override
-    public BookingResponse transitionBooking(UUID id, BookingEvent event){
-        Bookings booking = bookingsRepository.findById(id)
-                .orElseThrow(()-> new BookingNotFoundException(String.valueOf(id)));
+    public BookingResponse getBookingById(UUID id){
+        Bookings bookings = bookingsRepository.findById(id)
+                .orElseThrow(()-> new BookingNotFoundException("Booking Not Found"));
+
+        return bookingMapper.toResponse(bookings);
+    }
+
+    @Override
+    public BookingResponse confirmBooking(UUID id) {
+        return transitionBooking(id, BookingEvent.CONFIRM);
+    }
+
+    @Override
+    public BookingResponse payBooking(UUID id) {
+        return transitionBooking(id, BookingEvent.PAY);
+    }
+
+    @Override
+    public BookingResponse cancelBooking(UUID id) {
+        return transitionBooking(id, BookingEvent.CANCEL);
+    }
+
+    @Override
+    public BookingResponse refundBooking(UUID id) {
+        return transitionBooking(id, BookingEvent.REFUND);
+    }
+
+    private BookingResponse transitionBooking(UUID id, BookingEvent event){
+            Bookings booking = bookingsRepository.findById(id)
+                .orElseThrow(()-> new BookingNotFoundException("Booking id is not found with id: " + id));
 
         BookingState newState = BookingStateFactory.fromCurrentStatus(booking.getStatus())
                 .transition(event);

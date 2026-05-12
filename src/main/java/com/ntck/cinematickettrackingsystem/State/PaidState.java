@@ -1,7 +1,7 @@
-package com.ntck.cinematickettrackingsystem.models.State;
+package com.ntck.cinematickettrackingsystem.State;
 
 import com.ntck.cinematickettrackingsystem.GlobalException.InvalidStateTransitionException;
-import com.ntck.cinematickettrackingsystem.models.State.BookingEvent.BookingEvent;
+import com.ntck.cinematickettrackingsystem.State.BookingEvent.BookingEvent;
 import com.ntck.cinematickettrackingsystem.models.Status.Status;
 
 public class PaidState implements BookingState{

@@ -1,6 +1,6 @@
-package com.ntck.cinematickettrackingsystem.models.State.Factory;
+package com.ntck.cinematickettrackingsystem.State.Factory;
 
-import com.ntck.cinematickettrackingsystem.models.State.*;
+import com.ntck.cinematickettrackingsystem.State.*;
 import com.ntck.cinematickettrackingsystem.models.Status.Status;
 import lombok.NoArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.ntck.cinematickettrackingsystem.models.State.BookingEvent;
+package com.ntck.cinematickettrackingsystem.State.BookingEvent;
 
 // For action requested by user
 public enum BookingEvent {

@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
-@Table
+@Table(name = "movie_rounds")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
