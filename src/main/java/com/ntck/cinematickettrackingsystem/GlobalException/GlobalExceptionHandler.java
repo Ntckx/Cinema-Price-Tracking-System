@@ -27,4 +27,16 @@ public class GlobalExceptionHandler {
 
         return problemDetail;
     }
+
+    @ExceptionHandler(InvalidStateTransitionException.class)
+    public ProblemDetail handleInvalidStateTransition(InvalidStateTransitionException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                e.getMessage()
+        );
+        problemDetail.setTitle("Invalid Booking State Transition");
+        problemDetail.setProperty("timestamp:", LocalDateTime.now());
+
+        return problemDetail;
+    }
 }
