@@ -19,7 +19,7 @@ public class BookingResponse {
     private String movieTitle;
     private LocalTime movieRoundStartTime;
     private String seatNumber;
-    private double originPrice;
+    private double basePrice;
     private double finalPrice;
     private Status status;
     private MemberTier memberTier;

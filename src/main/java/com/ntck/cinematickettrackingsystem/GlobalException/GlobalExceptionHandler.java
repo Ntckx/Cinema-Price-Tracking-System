@@ -39,4 +39,12 @@ public class GlobalExceptionHandler {
 
         return problemDetail;
     }
+
+    @ExceptionHandler(DiscountOutOfBoundsException.class)
+    public ProblemDetail handleDiscountOutOfBound(DiscountOutOfBoundsException e){
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, e.getMessage());
+        problemDetail.setTitle("Discount Amount is out of bound");
+        problemDetail.setProperty("timestamp: ", LocalDateTime.now());
+        return problemDetail;
+    }
 }

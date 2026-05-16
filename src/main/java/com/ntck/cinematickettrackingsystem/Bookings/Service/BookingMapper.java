@@ -13,7 +13,7 @@ public class BookingMapper {
                 .movieTitle(booking.getMovieRound().getMovieTitle())
                 .movieRoundStartTime(booking.getMovieRound().getStartTime())
                 .seatNumber(booking.getSeatNumber())
-                .originPrice(booking.getOriginPrice())
+                .basePrice((booking.getBasePrice()))
                 .finalPrice(booking.getFinalPrice())
                 .status(booking.getStatus())
                 .memberTier(booking.getMemberTier())

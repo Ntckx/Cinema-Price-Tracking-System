@@ -23,7 +23,7 @@ public class BookingRequest {
     private UUID movieRoundId;
 
     @Positive(message = "Price must be greater than 0")
-    private double originPrice;
+    private double basePrice;
 
     @NotNull(message = "Member tier must not be null")
     private MemberTier memberTier;

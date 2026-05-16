@@ -49,11 +49,10 @@ public class BookingServiceImpl implements BookingsService {
         Bookings booking = Bookings.builder().name(bookingRequest.getName())
                 .movieRound(movieRound)
                 .seatNumber(bookingRequest.getSeatNumber())
-                .originPrice(bookingRequest.getOriginPrice())
-                .finalPrice(bookingRequest.getOriginPrice())
+                .basePrice(bookingRequest.getBasePrice())
+                .finalPrice(bookingRequest.getBasePrice())
                 .status(Status.PENDING)
                 .memberTier(MemberTier.NONE)
-                .pointsUsed(0)
                 .createdAt(LocalDateTime.now()).build();
 
         return bookingMapper.toResponse(bookingsRepository.save(booking));

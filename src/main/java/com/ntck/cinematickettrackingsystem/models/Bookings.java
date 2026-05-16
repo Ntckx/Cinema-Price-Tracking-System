@@ -35,14 +35,9 @@ public class Bookings {
     )
     private MovieRound movieRound;
 
-    @OneToMany(
-            mappedBy = "bookings",
-            orphanRemoval = true,
-            cascade = CascadeType.ALL
-    )
-    private List<BookingPromotional> promotions;
+    private int pointsUsed;
 
-    private double originPrice;
+    private double basePrice;
 
     private double finalPrice;
 
@@ -51,8 +46,6 @@ public class Bookings {
 
     @Enumerated(EnumType.STRING)
     private MemberTier memberTier;
-
-    private int pointsUsed;
 
     private LocalDateTime createdAt;
 
