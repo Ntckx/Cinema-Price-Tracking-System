@@ -12,11 +12,8 @@ public class FixedDiscount extends Coupon {
         if (pricingContext.getCouponValue() < 0) {
             throw new DiscountOutOfBoundsException("Fixed discount amount cannot be negative");
         }
-
-        if (pricingContext.getCouponValue() > basePrice) {
-            throw new DiscountOutOfBoundsException("Fixed discount amount cannot be greater than base price");
-        }
-        return pricingContext.updateCurrentPrice(preventNegative(basePrice - pricingContext.getCouponValue()));
+        double result = basePrice - pricingContext.getCouponValue();
+        return preventNegative(result);
     }
 
 }

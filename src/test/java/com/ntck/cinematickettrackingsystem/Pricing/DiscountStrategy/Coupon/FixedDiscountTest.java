@@ -22,14 +22,12 @@ public class FixedDiscountTest {
     }
 
     @Test
-    void shouldThrowWhenFixedDiscountIsGreaterThanBasePrice(){
+    void shouldReturnZeroFixedDiscountIsGreaterThanBasePrice(){
         PricingContext pricingContext = PricingContext.builder().couponValue(250.0).build();
-
-
-        assertThatThrownBy(()-> fixedDiscount.applyDiscount(200.0, pricingContext))
-                .as("Fixed discount should not allow discount greater than base price")
-                .isInstanceOf(DiscountOutOfBoundsException.class)
-                .hasMessageContaining("greater than base price");
+        double result = fixedDiscount.applyDiscount(200.0,pricingContext);
+        assertThat(result)
+                .describedAs("Result should return 0 when fixed discount is greater than base price")
+                .isEqualTo(0.0);
     }
 
     @Test
@@ -38,6 +36,7 @@ public class FixedDiscountTest {
 
         assertThatThrownBy(()-> fixedDiscount.applyDiscount(200.0, pricingContext))
                 .as("Fixed discount should not be negative")
+                .isInstanceOf(DiscountOutOfBoundsException.class)
                 .hasMessageContaining("Fixed discount amount cannot be negative");
     }
 }
