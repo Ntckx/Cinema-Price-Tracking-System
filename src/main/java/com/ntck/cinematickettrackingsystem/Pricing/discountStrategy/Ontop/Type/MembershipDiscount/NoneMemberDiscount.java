@@ -3,7 +3,7 @@ package com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Ontop.Type.
 import org.springframework.stereotype.Component;
 
 @Component
-public class NoMemberDiscount extends MemberDiscount {
+public class NoneMemberDiscount extends MemberDiscount {
     protected double getDiscountBy(){
         return 0;
     }
