@@ -3,10 +3,8 @@ package com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Coupon.Type
 import com.ntck.cinematickettrackingsystem.GlobalException.DiscountOutOfBoundsException;
 import com.ntck.cinematickettrackingsystem.Pricing.Context.PricingContext;
 import com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Coupon.Coupon;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
 @Component
 public class FixedDiscount extends Coupon {
     @Override
