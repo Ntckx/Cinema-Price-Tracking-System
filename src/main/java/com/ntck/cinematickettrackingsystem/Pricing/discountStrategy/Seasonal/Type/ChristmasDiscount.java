@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 public class ChristmasDiscount extends Seasonal {
     @Override
     public double applyDiscount(double basePrice, PricingContext pricingContext){
-        double finalPrice = (100-pricingContext.getSeasonalPercent()) * basePrice/100;
-
+        double discountPrice = (100-pricingContext.getSeasonalPercent()) * basePrice/100;
+        double maxDiscount = 0.8 * basePrice;
+        double actualDiscount = Math.min(discountPrice,maxDiscount);
+        double finalPrice = basePrice - actualDiscount;
         return preventNegative(finalPrice);
     }
 }
