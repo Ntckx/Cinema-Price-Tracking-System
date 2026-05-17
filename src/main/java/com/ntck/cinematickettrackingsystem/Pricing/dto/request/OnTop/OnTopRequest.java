@@ -3,11 +3,13 @@ package com.ntck.cinematickettrackingsystem.Pricing.dto.request.OnTop;
 import com.ntck.cinematickettrackingsystem.models.MemberTier.MemberTier;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class OnTopRequest {
     @NotNull(message = "On Top type is required")
     private OnTopType onTopType;

@@ -2,11 +2,13 @@ package com.ntck.cinematickettrackingsystem.Pricing.dto.request.Coupon;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class CouponRequest {
 
     @NotNull(message = "Coupon type is required")

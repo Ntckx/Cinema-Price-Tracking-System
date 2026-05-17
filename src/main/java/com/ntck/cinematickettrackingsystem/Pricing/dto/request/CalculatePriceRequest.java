@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class CalculatePriceRequest {
     @NotNull(message = "Movie round id is required")
     private UUID movieRoundId;

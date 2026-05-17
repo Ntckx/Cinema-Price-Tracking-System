@@ -1,16 +1,15 @@
 package com.ntck.cinematickettrackingsystem.Pricing.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CalculatePriceResponse {
     private UUID movieRoundId;
 

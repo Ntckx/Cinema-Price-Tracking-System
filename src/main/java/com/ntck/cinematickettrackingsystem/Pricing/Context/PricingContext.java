@@ -7,6 +7,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Getter
 @Setter
 @Builder
@@ -25,8 +26,4 @@ public class PricingContext {
     private double seasonalPercent;
     private double everyXBaht;
     private double discountYBaht;
-
-    public double updateCurrentPrice(double newPrice) {
-        return this.currentPrice = Math.max(newPrice, 0);
-    }
 }

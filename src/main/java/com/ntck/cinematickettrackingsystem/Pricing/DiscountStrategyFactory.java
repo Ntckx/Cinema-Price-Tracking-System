@@ -8,7 +8,6 @@ import com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Ontop.Type.M
 import com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Ontop.Type.MembershipDiscount.SilverMemberDiscount;
 import com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Ontop.Type.PointDiscount;
 import com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Seasonal.Type.ChristmasDiscount;
-import com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Seasonal.Type.HalloweenDiscount;
 import com.ntck.cinematickettrackingsystem.Pricing.discountStrategy.Seasonal.Type.HappyHour;
 import com.ntck.cinematickettrackingsystem.Pricing.dto.request.Coupon.CouponRequest;
 import com.ntck.cinematickettrackingsystem.Pricing.dto.request.OnTop.OnTopRequest;
@@ -26,7 +25,6 @@ public class DiscountStrategyFactory {
     private final GoldMemberDiscount goldMemberDiscount;
     private final PointDiscount pointDiscount;
     private final ChristmasDiscount christmasDiscount;
-    private final HalloweenDiscount halloweenDiscount;
     private final HappyHour happyHour;
 
     public DiscountStrategy buildCoupon(CouponRequest couponRequest) {
@@ -59,7 +57,6 @@ public class DiscountStrategyFactory {
         }
         return switch (seasonalRequest.getSeasonalType()){
             case CHRISTMAS -> christmasDiscount;
-            case HALLOWEEN -> halloweenDiscount;
             case HAPPY_HOUR -> happyHour;
         };
     }

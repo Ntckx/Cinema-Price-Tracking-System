@@ -2,11 +2,13 @@ package com.ntck.cinematickettrackingsystem.Pricing.dto.request.Seasonal;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 public class SeasonalRequest {
     @NotNull(message = "Seasonal type is required")
     private SeasonalType seasonalType;
