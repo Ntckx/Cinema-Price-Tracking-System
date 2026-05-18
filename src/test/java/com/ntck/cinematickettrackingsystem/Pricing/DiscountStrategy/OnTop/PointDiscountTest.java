@@ -38,7 +38,7 @@ public class PointDiscountTest {
         assertThatThrownBy(() -> pointDiscount.applyDiscount(200.0, pricingContext))
                 .as("Points used should not be negative")
                 .isInstanceOf(DiscountOutOfBoundsException.class)
-                .hasMessageContaining("Points used cannot be negative");
+                .hasMessageContaining("Point used cannot be less than 0");
     }
 
 }
